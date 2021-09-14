@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <form action="/upload" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <input type="file" class="form-control-file" name="photo">
+            <input type="submit" value="Upload photo" class="btn btn-default">
+        </div>
+    </form>
+    <hr>
+    <form action="/uploads" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <input type="file" class="form-control-file" name="photos" multiple>
+            <input type="submit" value="Upload photos" class="btn btn-default">
+        </div>
+    </form>
+    <hr>
+    <form action="/files" enctype="multipart/form-data" method="post">
+        <div class="form-group">
+            <input type="file" class="form-control-file" name="files" multiple>
+            <input type="submit" value="Upload documents" class="btn btn-default">
+        </div>
+    </form>
+    <% if (message && message.length > 0) { %>
+    <textarea name="" id="" cols="30" rows="10">
+        <%= message %> uploaded.
+    </textarea>
+    <% } %> 
+</body>
+
+</html>
