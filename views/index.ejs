@@ -5,37 +5,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=s, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Document</title>
+    <style>
+        .body {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .toast {
+            position: fixed;
+            right: 10px;
+            top: 10px;
+        }
+
+        .col-lg-6 {
+            margin-top: 15rem;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="img-area">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form action="/upload" enctype="multipart/form-data" method="post">
+                    <div class="input-group">
+                        <input type="file" class="form-control" name="photo">
+                        <button type="submit" class="btn btn-primary">Upload Single</button>
+                    </div>
+                </form>
+                <hr>
+                <form action="/uploads" enctype="multipart/form-data" method="post">
+                    <div class="input-group">
+                        <input type="file" class="form-control" name="photos" multiple>
+                        <button type="submit" class="btn btn-primary">Upload Multiple</button>
+                    </div>
+                </form>
+                <hr>
+                <form action="/files" enctype="multipart/form-data" method="post">
+                    <div class="input-group">
+                        <input type="file" class="form-control" name="files" multiple>
+                        <button type="submit" class="btn btn-primary">Upload Files</button>
+                    </div>
+                </form>
+                <% if (message && message.length> 0) { %>
+                    <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong class="me-auto">Message</strong>
+                            <small>
+                                <%= message.length %>
+                            </small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            <%= message %>
+                        </div>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
 
-
-    <form action="/upload" enctype="multipart/form-data" method="post">
-        <div class="form-group">
-            <input type="file" class="form-control-file" name="photo">
-            <input type="submit" value="Upload photo" class="btn btn-default">
-        </div>
-    </form>
-    <hr>
-    <form action="/uploads" enctype="multipart/form-data" method="post">
-        <div class="form-group">
-            <input type="file" class="form-control-file" name="photos" multiple>
-            <input type="submit" value="Upload photos" class="btn btn-default">
-        </div>
-    </form>
-    <hr>
-    <form action="/files" enctype="multipart/form-data" method="post">
-        <div class="form-group">
-            <input type="file" class="form-control-file" name="files" multiple>
-            <input type="submit" value="Upload documents" class="btn btn-default">
-        </div>
-    </form>
-    <% if (message && message.length > 0) { %>
-    <textarea name="" id="" cols="30" rows="10">
-        <%= message %> uploaded.
-    </textarea>
-    <% } %> 
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready (function(){
+            window.setTimeout(function () { 
+                $(".toast").alert('close'); 
+            }, 4000);    
+        });
+    </script>
 </body>
 
 </html>
