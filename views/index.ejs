@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=s, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Document</title>
     <style>
@@ -13,7 +14,7 @@
             width: 100%;
         }
 
-        .toast {
+        .toast-container {
             position: fixed;
             right: 10px;
             top: 10px;
@@ -30,44 +31,59 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="img-area">
-                    <img src="" alt="">
+                    
                 </div>
             </div>
             <div class="col-lg-6">
                 <form action="/upload" enctype="multipart/form-data" method="post">
                     <div class="input-group">
-                        <input type="file" class="form-control" name="photo">
-                        <button type="submit" class="btn btn-primary">Upload Single</button>
+                        <input type="file" class="form-control" name="file">
+                        <button type="submit" class="btn btn-primary">Upload File</button>
                     </div>
                 </form>
                 <hr>
                 <form action="/uploads" enctype="multipart/form-data" method="post">
                     <div class="input-group">
-                        <input type="file" class="form-control" name="photos" multiple>
-                        <button type="submit" class="btn btn-primary">Upload Multiple</button>
-                    </div>
-                </form>
-                <hr>
-                <form action="/files" enctype="multipart/form-data" method="post">
-                    <div class="input-group">
                         <input type="file" class="form-control" name="files" multiple>
                         <button type="submit" class="btn btn-primary">Upload Files</button>
                     </div>
                 </form>
-                <% if (message && message.length> 0) { %>
-                    <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header">
-                            <strong class="me-auto">Message</strong>
-                            <small>
-                                <%= message.length %> 
-                            </small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        </div>
-                        <div class="toast-body">
-                            <%= message %> file uploaded successfully
-                        </div>
+                <hr>
+                <form action="/uploadphoto" enctype="multipart/form-data" method="post">
+                    <div class="input-group">
+                        <input type="file" class="form-control" name="photo" accept="image/*">
+                        <button type="submit" class="btn btn-primary">Upload Photo</button>
                     </div>
-                <% } %>
+                </form>
+                <div class="toast-container">
+                    <% if (message && message.length> 0) { %>
+                        <div class="toast fade show " role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <strong class="me-auto text-success">Message</strong>
+                                <small>
+                                    <%= message.length %> 
+                                </small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                <%= message %>
+                            </div>
+                        </div>
+                    <% } if(warning && warning.length>0) {%>
+                        <div class="toast fade show " role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <strong class="me-auto text-warning">Warning</strong>
+                                <small>
+                                    <%= warning.length %> 
+                                </small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                <%= warning %>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>
