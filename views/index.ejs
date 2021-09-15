@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="img-area">
-                    
+                    <img id="see-img" src="" alt="">
                 </div>
             </div>
             <div class="col-lg-6">
@@ -92,6 +92,9 @@
     <script src="js/bootstrap.min.js"></script>
     <script>
         $(document).ready (function(){
+            var value = $(".form-control").val();
+            $(".see-img").attr("src",`${value}`)
+
             window.setTimeout(function () { 
                 $(".toast").alert('close'); 
             }, 4000);    
